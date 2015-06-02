@@ -1,0 +1,25 @@
+buildscript {
+  repositories {
+    mavenCentral()
+    maven {
+      url 'http://dl.bintray.com/sponiro/gradle-plugins'
+    }
+  }
+  dependencies {
+    classpath group: 'de.fanero.gradle.plugin.hadoop', name: 'gradle-hadoop-plugin', version: '0.2'
+  }
+}
+
+apply plugin: 'hadoop'
+
+if (!hasProperty('mainClass')) {
+  ext.mainClass = 'com.j.distributed.Main'
+}
+
+dependencies {
+  compile 'org.apache.hadoop:hadoop-client:2.6.0'
+}
+
+hadoop {
+  mainClassName = 'com.j.distributed.Main'
+}
