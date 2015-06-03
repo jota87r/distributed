@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.j.distributed;
+package com.j.distributed.counter;
 
 import java.io.IOException;
 import org.apache.hadoop.io.IntWritable;
@@ -14,7 +14,7 @@ import org.apache.hadoop.mapreduce.Reducer;
  *
  * @author jonatan
  */
-public class CombineReduce extends Reducer<Text, IntWritable, Text, IntWritable> {
+public class CounterReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
   
   @Override
   public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {

@@ -1,0 +1,6 @@
+/.nb-gradle/private/
+/base/build/
+/.nb-gradle
+/.gradle
+/base/build/dependency-cache
+/base/build/classes
