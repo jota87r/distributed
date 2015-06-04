@@ -20,17 +20,11 @@ import org.apache.hadoop.util.Tool;
  */
 public class CounterJob extends Configured implements Tool {
 
-  private final Class clazz;
-  
-  public CounterJob(Class clazz) {
-    this.clazz = clazz;
-  }
-  
   @Override
   public int run(String... options) throws Exception {
     
     Job job = Job.getInstance(getConf(), getClass().toString());
-    job.setJarByClass(clazz);
+    job.setJarByClass(getClass());
     
     job.setMapperClass(CounterMapper.class);
     job.setCombinerClass(CounterReducer.class);

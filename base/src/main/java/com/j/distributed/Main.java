@@ -17,8 +17,8 @@ public class Main {
   
   public static void main(String... args) throws Exception {
     PatternHolder.init(args[3]);
-    int i = ToolRunner.run(new CounterJob(Main.class), args);
+    int i = ToolRunner.run(new CounterJob(), args);
     if (i != 0) System.exit(i);
-    else System.exit(ToolRunner.run(new SorterJob(Main.class), args));
+    else System.exit(ToolRunner.run(new SorterJob(), args));
   }
 }

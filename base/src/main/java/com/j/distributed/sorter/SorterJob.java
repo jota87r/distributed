@@ -20,17 +20,11 @@ import org.apache.hadoop.util.Tool;
  */
 public class SorterJob extends Configured implements Tool {
 
-  private final Class clazz;
-  
-  public SorterJob(Class clazz) {
-    this.clazz = clazz;
-  }
-
   @Override
   public int run(String... options) throws Exception {
     
     Job job = Job.getInstance(getConf(), getClass().toString());
-    job.setJarByClass(clazz);
+    job.setJarByClass(getClass());
     
     job.setMapperClass(SorterMapper.class);
     job.setCombinerClass(SorterReducer.class);
