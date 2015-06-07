@@ -12,6 +12,9 @@ buildscript {
 
 apply plugin: 'hadoop'
 
+sourceCompatibility=1.7
+targetCompatibility=1.7
+
 if (!hasProperty('mainClass')) {
   ext.mainClass = 'com.j.distributed.Main'
 }
