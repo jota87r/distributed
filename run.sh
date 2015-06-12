@@ -1,12 +1,13 @@
 export HADOOP_HOME=/opt/hadoop-2.7.0
+$HADOOP_HOME/bin/hdfs namenode -format
 {
-	rm base-1.0-SNAPSHOT.jar
+    $HADOOP_HOME/bin/hdfs dfs -rmr /user
 } || {}
-{
-	rm -rf /home/jonatan/Desktop/intermediate
-} || {}
-{
-	rm -rf /home/jonatan/Desktop/output
-} || {}
-smbget -u jonatan -p 87100454724 smb://192.168.0.11/build/libs/base-1.0-SNAPSHOT.jar
-$HADOOP_HOME/bin/hadoop jar base-1.0-SNAPSHOT.jar com.j.distributed.Main /home/jonatan/Desktop/input /home/jonatan/Desktop/intermediate /home/jonatan/Desktop/output "$1"
+$HADOOP_HOME/bin/hdfs dfs -mkdir /user
+$HADOOP_HOME/bin/hdfs dfs -mkdir /user/root
+$HADOOP_HOME/bin/hdfs dfs -put input dist_input
+time $HADOOP_HOME/bin/hadoop jar base-1.0-SNAPSHOT.jar com.j.distributed.Main dist_input dist_intermediate dist_output "$1"
+printf "\nLas lineas anteriores son el tiempo de ejecucion del programa distribuido."
+printf "\n\nEste es el resultado (Lista de cantidad de ocurrencias y archivo):\n\n"
+$HADOOP_HOME/bin/hdfs dfs -cat dist_output/*
+printf "\n"
